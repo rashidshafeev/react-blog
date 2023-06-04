@@ -40,7 +40,6 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {
     getUsersFetch: (state) => {
-      console.log('getUsersFetch')
       state.isLoading = true
     },
     getUsersSuccess: (state, action: PayloadAction<BlogUser[]>) => {
