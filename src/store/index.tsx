@@ -18,7 +18,7 @@ export const store = configureStore({
     middleware: [saga]
   })
 
-  saga.run(rootSaga)
+saga.run(rootSaga)
 
   // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

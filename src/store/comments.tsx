@@ -34,8 +34,6 @@ export const commentsSlice = createSlice({
       state.isLoading = false
     },
     editComment: (state, action: PayloadAction<{id: number, body: string}>) => {
-        console.log(action)
-
         if (state.comments.find( (comment: BlogComment)  => comment.id === action.payload.id)) {
             const comment = state.comments.find((comment: BlogComment)  => comment.id === action.payload.id)!
             comment.body = action.payload.body

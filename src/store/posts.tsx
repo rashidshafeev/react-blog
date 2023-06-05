@@ -33,8 +33,6 @@ export const postsSlice = createSlice({
       state.isLoading = false
     },
     editPost: (state, action: PayloadAction<{id: number, body: string}>) => {
-      console.log(action)
-        
         if (state.posts.find( (post: BlogPost)  => post.id === action.payload.id)) {
             const comment = state.posts.find((post: BlogPost)  => post.id === action.payload.id)!
             comment.body = action.payload.body

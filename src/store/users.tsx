@@ -50,8 +50,6 @@ export const usersSlice = createSlice({
       state.isLoading = false
     },
     editUserUsername: (state, action: PayloadAction<{id: number, username: string}>) => {
-        console.log(action)
-          
           if (state.users.find( (user: BlogUser)  => user.id === action.payload.id)) {
               const user = state.users.find((user: BlogUser)  => user.id === action.payload.id)!
               user.username = action.payload.username
