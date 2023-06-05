@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-interface BlogPost {
+export interface BlogPost {
   userId: number,
   id: number,
   title: string,
@@ -44,8 +44,5 @@ export const postsSlice = createSlice({
 })
 
 export const { editPost, getPostsFetch, getPostsSuccess, getPostsFail } = postsSlice.actions
-
-// Other code such as selectors can use the imported `RootState` type
-// export const selectCount = (state: RootState) => state.counter.value
 
 export default postsSlice.reducer

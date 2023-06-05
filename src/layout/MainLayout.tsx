@@ -2,23 +2,13 @@ import logo from '../logo.svg';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PropsWithChildren } from 'react';
+import { Container } from 'react-bootstrap';
 
-function MainLayout(props: PropsWithChildren) {
+function MainLayout(props: PropsWithChildren ) {
     return (
-        <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    {props.children}
-                </a>
-            </header>
+        <Container fluid>
+            {props.children}
+        </Container>
     )
 }
 

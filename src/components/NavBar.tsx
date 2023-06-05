@@ -3,10 +3,6 @@ import { FiMenu } from 'react-icons/fi'
 import { Navbar, Container, Offcanvas, Button, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom'
 
-
-
-
-
 function NavBar() {
     const [show, setShow] = useState(false);
 
@@ -31,17 +27,10 @@ function NavBar() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Nav defaultActiveKey="/home" className="flex-column">
-                        <NavLink to="/feed">Лента</NavLink>
-                        <NavLink to="/user">Пользователь</NavLink>
-                        <NavLink to="/about">О себе</NavLink>
-                        {/* <Nav.Link href="/home">Active</Nav.Link>
-<Nav.Link eventKey="link-1">Link</Nav.Link>
-<Nav.Link eventKey="link-2">Link</Nav.Link>
-<Nav.Link eventKey="disabled" disabled>
-Disabled
-</Nav.Link> */}
+                        <NavLink to="/feed" onClick={(e) => {handleClose()}}>Лента</NavLink>
+                        <NavLink to="/user" onClick={(e) => {handleClose()}}>Пользователь</NavLink>
+                        <NavLink to="/about" onClick={(e) => {handleClose()}}>О себе</NavLink>
                     </Nav>
-
                 </Offcanvas.Body>
             </Offcanvas>
         </>

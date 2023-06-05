@@ -23,14 +23,14 @@ export const commentsSlice = createSlice({
   name: 'comments',
   initialState,
   reducers: {
-    getCommentsFetch: (state) => {
+    getPostCommentsFetch: (state, action: PayloadAction<{id: number}>) => {
       state.isLoading = true
     },
-    getCommentsSuccess: (state, action: PayloadAction<BlogComment[]>) => {
+    getPostCommentsSuccess: (state, action: PayloadAction<BlogComment[]>) => {
       state.comments = action.payload
       state.isLoading = false
     },
-    getCommentsFail: (state) => {
+    getPostCommentsFail: (state) => {
       state.isLoading = false
     },
     editComment: (state, action: PayloadAction<{id: number, body: string}>) => {
@@ -44,7 +44,7 @@ export const commentsSlice = createSlice({
   },
 })
 
-export const { editComment, getCommentsFetch, getCommentsSuccess, getCommentsFail } = commentsSlice.actions
+export const { editComment, getPostCommentsFetch, getPostCommentsSuccess, getPostCommentsFail } = commentsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 // export const selectCount = (state: RootState) => state.counter.value

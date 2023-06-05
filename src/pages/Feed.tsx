@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import { RootState } from '../store/index';
-import { editPost, getPostsFetch } from '../store/posts';
-import { editComment, getCommentsFetch } from '../store/comments';
+import { editPost, getPostsFetch, BlogPost } from '../store/posts';
+import { editComment, getPostCommentsFetch } from '../store/comments';
 import { editUserUsername, getUsersFetch } from '../store/users';
+import { Card, Container, Button } from 'react-bootstrap';
 
 function FeedPage() {
     const posts = useSelector((state: RootState) => state.posts.posts);
@@ -13,7 +14,7 @@ function FeedPage() {
 
     useEffect(() => {
         dispatch(getPostsFetch())
-        dispatch(getCommentsFetch())
+        dispatch(getPostCommentsFetch({id: 3}))
         dispatch(getUsersFetch())
         dispatch(editPost({id: 1, body: 'testPost'}))
         dispatch(editComment({id: 1, body: 'testComment'}))
@@ -28,7 +29,19 @@ function FeedPage() {
     console.log(users)
 
     return (
-        <h1>Feed</h1>
+        <Container>
+            {posts.map((post: BlogPost) =>
+                <Card key={post.id}>
+                    <Card.Body>
+                        <Card.Title>{post.title}</Card.Title>
+                        <Card.Text>
+                            {post.body}
+                        </Card.Text>
+                        <Button variant="primary">Комментарии</Button>
+                    </Card.Body>
+                </Card>
+            )}
+        </Container>
     )
 }
 
