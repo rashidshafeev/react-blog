@@ -27,7 +27,7 @@ function NavBar() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Nav defaultActiveKey="/home" className="flex-column">
-                        <NavLink to="/feed" onClick={(e) => {handleClose()}}>Лента</NavLink>
+                        <NavLink to="/" onClick={(e) => {handleClose()}}>Лента</NavLink>
                         <NavLink to="/user" onClick={(e) => {handleClose()}}>Пользователь</NavLink>
                         <NavLink to="/about" onClick={(e) => {handleClose()}}>О себе</NavLink>
                     </Nav>

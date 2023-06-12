@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <RootLayout/>,
     errorElement: <ErrorPage/>,
     children: [
-      { path: '/feed', element: <FeedPage/>},
+      { path: '/', element: <FeedPage/>},
       { path: '/about', element: <AboutPage/>},
       { path: '/user', element: <UserPage/>},
     ],
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
 function App() {
   
   return (
-    <Provider store={ store }>
-      <RouterProvider router={ router }/>
+    <Provider store={store}>
+      <RouterProvider router={router}/>
     </Provider>
     
   );

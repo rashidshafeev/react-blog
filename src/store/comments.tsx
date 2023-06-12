@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-interface BlogComment {
+export interface BlogComment {
     postId: number,
     id: number,
     name: string,
@@ -9,13 +9,17 @@ interface BlogComment {
     body: string
   }
 
+interface BlogComments {
+    [postId: string]: BlogComment[],
+ }
+
 interface commentsInitialState {
-    comments: BlogComment[],
+    comments: BlogComments,
     isLoading: boolean
 }
 
 const initialState: commentsInitialState = {
-    comments: [],
+    comments: {},
     isLoading: false
 }
 
@@ -27,17 +31,18 @@ export const commentsSlice = createSlice({
       state.isLoading = true
     },
     getPostCommentsSuccess: (state, action: PayloadAction<BlogComment[]>) => {
-      state.comments = action.payload
+      const postId = action.payload[0].postId
+      state.comments[postId] = action.payload
       state.isLoading = false
     },
     getPostCommentsFail: (state) => {
       state.isLoading = false
     },
     editComment: (state, action: PayloadAction<{id: number, body: string}>) => {
-        if (state.comments.find( (comment: BlogComment)  => comment.id === action.payload.id)) {
-            const comment = state.comments.find((comment: BlogComment)  => comment.id === action.payload.id)!
-            comment.body = action.payload.body
-        }
+        // if (state.comments.find((comment: BlogComment)  => comment.id === action.payload.id)) {
+        //     const comment = state.comments.find((comment: BlogComment)  => comment.id === action.payload.id)!
+        //     comment.body = action.payload.body
+        // }
       }
   },
 })
