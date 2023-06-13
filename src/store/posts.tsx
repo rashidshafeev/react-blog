@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface BlogPost {
@@ -8,14 +8,24 @@ export interface BlogPost {
   body: string
 }
 
-interface postsInitialState {
+export interface postsState {
   posts: BlogPost[],
-  isLoading: boolean
+  isLoading: boolean,
+  currentPage: number,
+  perPage: number,
+  totalCount: number,
+  filterValue: string,
+  sorting: string
 }
 
-const initialState: postsInitialState = {
+const initialState: postsState = {
   posts: [],
-  isLoading: false
+  isLoading: false,
+  currentPage: 1,
+  perPage: 10,
+  totalCount: 0,
+  filterValue: '',
+  sorting: ''
 } 
 
 export const postsSlice = createSlice({
@@ -27,10 +37,14 @@ export const postsSlice = createSlice({
     },
     getPostsSuccess: (state, action: PayloadAction<BlogPost[]>) => {
       state.posts = action.payload
+      state.totalCount = action.payload.length
       state.isLoading = false
     },
     getPostsFail: (state) => {
       state.isLoading = false
+    },
+    switchPage: (state, action: PayloadAction<{page: number}>) => {
+      state.currentPage = action.payload.page
     },
     editPost: (state, action: PayloadAction<{id: number, body: string}>) => {
         if (state.posts.find( (post: BlogPost)  => post.id === action.payload.id)) {
@@ -41,6 +55,6 @@ export const postsSlice = createSlice({
   },
 })
 
-export const { editPost, getPostsFetch, getPostsSuccess, getPostsFail } = postsSlice.actions
+export const { editPost, getPostsFetch, getPostsSuccess, getPostsFail, switchPage } = postsSlice.actions
 
 export default postsSlice.reducer

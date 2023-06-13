@@ -25,12 +25,12 @@ interface BlogUser {
     }
   }
 
-interface postsInitialState {
+interface postsState {
     users: BlogUser[],
     isLoading: boolean
 }
 
-const initialState: postsInitialState = {
+const initialState: postsState = {
     users: [],
     isLoading: false
 } 

@@ -13,12 +13,12 @@ interface BlogComments {
     [postId: string]: BlogComment[],
  }
 
-interface commentsInitialState {
+interface commentsState {
     comments: BlogComments,
     isLoading: boolean
 }
 
-const initialState: commentsInitialState = {
+const initialState: commentsState = {
     comments: {},
     isLoading: false
 }

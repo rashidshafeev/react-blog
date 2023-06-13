@@ -6,6 +6,7 @@ import { editPost, getPostsFetch, BlogPost } from '../store/posts';
 
 
 function PostsList() {
+
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getPostsFetch())
@@ -15,13 +16,15 @@ function PostsList() {
     //     dispatch(editComment({id: 1, body: 'testComment'}))
     //     dispatch(editUserUsername({id: 1, username: 'testUsername'}))
     }, [dispatch])
-    const posts = useSelector((state: RootState) => state.posts.posts);
+    const posts = useSelector((state: RootState) => state.posts);
+
+    const page = posts.posts.slice((posts.currentPage - 1) * posts.perPage, (posts.currentPage - 1) * posts.perPage + posts.perPage)
 
     console.log('PostsList')
 
     return (
         <div className='posts-list_wrapper'>
-            {posts.map((post: BlogPost) =>
+            {page.map((post: BlogPost) =>
                 <PostCard key={post.id} post={post}></PostCard>
             )}
         </div>

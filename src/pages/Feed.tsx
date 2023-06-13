@@ -7,6 +7,7 @@ import { Card, Container, Button, Accordion } from 'react-bootstrap';
 import CommentsAccordionButton from '../components/CommentsAccordionButton';
 import PostsList from '../components/PostsList';
 import FilterInput from '../components/FilterInput';
+import PaginationControls from '../components/PaginationControls';
 
 
   
@@ -20,6 +21,7 @@ function FeedPage() {
         <Container>
             <FilterInput></FilterInput>
             <PostsList></PostsList>
+            <PaginationControls></PaginationControls>              
         </Container>
     )
 }
