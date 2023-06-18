@@ -8,16 +8,15 @@ function UserPage() {
     const params = useParams()
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(getUserFetch(Number(params.userId)))
+    }, [dispatch, params.userId])
+
     let userId : string
     if (params.userId) {
         userId = params.userId
     }
 
-    useEffect(() => {
-        dispatch(getUserFetch(Number(params.userId)))
-    }, [])
-
-    
     const user : BlogUser = useSelector((state: RootState) => state.users.users[userId]);
     
     console.log(user)
@@ -27,6 +26,8 @@ function UserPage() {
             <h1>User</h1>
             <div>
             {params.userId}
+            {user.name}
+            {user.address.city}
             </div>
             
         </>
