@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-interface BlogUser {
+export interface BlogUser {
     id: number,
     name: string,
     username: string,
@@ -25,13 +25,17 @@ interface BlogUser {
     }
   }
 
-interface postsState {
-    users: BlogUser[],
+interface BlogUsers {
+    [userId: string]: BlogUser,
+}
+
+interface usersState {
+    users: BlogUsers,
     isLoading: boolean
 }
 
-const initialState: postsState = {
-    users: [],
+const initialState: usersState = {
+    users: {},
     isLoading: false
 } 
 
@@ -39,26 +43,27 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    getUsersFetch: (state) => {
+    getUserFetch: (state, action: PayloadAction<number>) => {
       state.isLoading = true
     },
-    getUsersSuccess: (state, action: PayloadAction<BlogUser[]>) => {
-      state.users = action.payload
+    getUserSuccess: (state, action: PayloadAction<BlogUser>) => {
+      const userId = action.payload.id
+      state.users[userId] = action.payload
       state.isLoading = false
     },
-    getUsersFail: (state) => {
+    getUserFail: (state) => {
       state.isLoading = false
     },
     editUserUsername: (state, action: PayloadAction<{id: number, username: string}>) => {
-          if (state.users.find( (user: BlogUser)  => user.id === action.payload.id)) {
-              const user = state.users.find((user: BlogUser)  => user.id === action.payload.id)!
-              user.username = action.payload.username
-          }
+          // if (state.users.find( (user: BlogUser)  => user.id === action.payload.id)) {
+          //     const user = state.users.find((user: BlogUser)  => user.id === action.payload.id)!
+          //     user.username = action.payload.username
+          // }
       },
   },
 })
 
-export const { editUserUsername, getUsersFetch, getUsersSuccess, getUsersFail } = usersSlice.actions
+export const { editUserUsername, getUserFetch, getUserSuccess, getUserFail} = usersSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 // export const selectCount = (state: RootState) => state.counter.value

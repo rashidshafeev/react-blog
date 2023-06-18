@@ -1,21 +1,24 @@
+import { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { getUsersSuccess } from "../users";
+import { getUserSuccess } from "../users";
 
-function fetchUsers() {
-    return axios ({
-        method: 'get',
-        url: 'https://jsonplaceholder.typicode.com/users'
-    });
+function fetchUsersClosure(id: number) {
+    return function fetchComments() {
+        return axios ({
+            method: 'get',
+            url: `https://jsonplaceholder.typicode.com/users/${id}`
+        });
+    }
 }
 
-function* workGetUsersFetch(): any {
-    const users = yield call(fetchUsers)
-    yield put(getUsersSuccess(users.data))
+function* workGetUserFetch(action: PayloadAction<number>): any {
+    const users = yield call(fetchUsersClosure(action.payload))
+    yield put(getUserSuccess(users.data))
 }
 
 function* usersSaga() {
-    yield takeEvery('users/getUsersFetch', workGetUsersFetch)
+    yield takeEvery('users/getUserFetch', workGetUserFetch)
 }
 
 export default usersSaga

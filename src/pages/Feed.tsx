@@ -1,12 +1,5 @@
-import { useEffect } from 'react'
-import { useSelector, useDispatch} from 'react-redux'
-import { RootState } from '../store/index';
-import { editComment, getPostCommentsFetch } from '../store/comments';
-import { editUserUsername, getUsersFetch } from '../store/users';
-import { Card, Container, Button, Accordion } from 'react-bootstrap';
-import CommentsAccordionButton from '../components/CommentsAccordionButton';
-import PostsList from '../components/PostsList';
-import FilterInput from '../components/FilterInput';
+import { Container } from 'react-bootstrap'; 
+import PostsList from '../components/PostsList'; 
 import PaginationControls from '../components/PaginationControls';
 import ControlsBar from '../components/ControlsBar';
 
