@@ -14,7 +14,7 @@ function NavBar() {
         <>
             <Navbar bg="light">
                 <Container>
-                    <Navbar.Brand href="#home">REACT BLOG</Navbar.Brand>
+                    <Navbar.Brand><NavLink to="/">REACT BLOG</NavLink></Navbar.Brand>
                     <Button variant="light" onClick={handleShow}>
                         <FiMenu />
                     </Button>

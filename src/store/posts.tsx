@@ -11,9 +11,10 @@ export interface BlogPost {
 export interface postsState {
   posts: BlogPost[],
   isLoading: boolean,
+  postCount: number,
+  pageCount: number,
   currentPage: number,
   perPage: number,
-  totalCount: number,
   filterValue: string,
   sorting: string
 }
@@ -21,9 +22,10 @@ export interface postsState {
 const initialState: postsState = {
   posts: [],
   isLoading: false,
+  postCount: 0,
+  pageCount: 0,
   currentPage: 1,
   perPage: 10,
-  totalCount: 0,
   filterValue: '',
   sorting: ''
 } 
@@ -37,14 +39,28 @@ export const postsSlice = createSlice({
     },
     getPostsSuccess: (state, action: PayloadAction<BlogPost[]>) => {
       state.posts = action.payload
-      state.totalCount = action.payload.length
       state.isLoading = false
     },
     getPostsFail: (state) => {
       state.isLoading = false
     },
-    switchPage: (state, action: PayloadAction<{page: number}>) => {
-      state.currentPage = action.payload.page
+    postCountUpdate: (state, action: PayloadAction<number>) => {
+      state.postCount = action.payload
+    },
+    pageCountUpdate: (state, action: PayloadAction<number>) => {
+      state.pageCount = action.payload
+    },
+    switchPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload
+    },
+    filterChange: (state, action: PayloadAction<string>) => {
+      state.filterValue = action.payload
+    },
+    sortingChange: (state, action: PayloadAction<string>) => {
+      state.sorting = action.payload
+    },
+    perPageChange: (state, action: PayloadAction<number>) => {
+      state.perPage = action.payload
     },
     editPost: (state, action: PayloadAction<{id: number, body: string}>) => {
         if (state.posts.find( (post: BlogPost)  => post.id === action.payload.id)) {
@@ -55,6 +71,6 @@ export const postsSlice = createSlice({
   },
 })
 
-export const { editPost, getPostsFetch, getPostsSuccess, getPostsFail, switchPage } = postsSlice.actions
+export const { editPost, getPostsFetch, getPostsSuccess, getPostsFail, pageCountUpdate, postCountUpdate, switchPage, filterChange, sortingChange, perPageChange } = postsSlice.actions
 
 export default postsSlice.reducer

@@ -1,18 +1,17 @@
-import { useState } from 'react';
-import { FiMenu } from 'react-icons/fi'
-import { Navbar, Container, Offcanvas, Button, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { filterChange } from '../store/posts';
 
 function FilterInput() {
-    const [show, setShow] = useState(false);
+    const dispatch = useDispatch()
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const filterChangeHandler = (event : React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(filterChange(event.target.value))
+    }
 
-
+    console.log('Filter Input')
     return (
         <div className='filter-inut_wrapper'>
-            <input></input>
+            <input onChange={filterChangeHandler}></input>
         </div>
     )
 }

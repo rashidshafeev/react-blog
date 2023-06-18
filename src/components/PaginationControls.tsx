@@ -1,37 +1,45 @@
-import React, { useState } from 'react';
-import { FiMenu } from 'react-icons/fi'
-import { Navbar, Container, Offcanvas, Button, Nav, ButtonGroup } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom'
+import React from 'react'; 
+import { ButtonGroup } from 'react-bootstrap'; 
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/index';
-import { switchPage } from '../store/posts';
+import { pageCountUpdate } from '../store/posts';
 import PaginationButton from './PaginationButton';
 
 
 function PaginationControls() {
     const dispatch = useDispatch()
 
-    const posts = useSelector((state: RootState) => state.posts);
 
-    let pagesCount : number
-    (posts.totalCount % posts.perPage) === 0 ? pagesCount = posts.totalCount / posts.perPage - 1 : pagesCount = posts.totalCount / posts.perPage
+    // const pageCount : number = useSelector((state: RootState) => state.posts.pageCount);
+    const currentPage : number = useSelector((state: RootState) => state.posts.currentPage);
+    const postCount : number = useSelector((state: RootState) => state.posts.postCount);
+    const perPage : number = useSelector((state: RootState) => state.posts.perPage);
+
+    let pageCount : number
+    (postCount % perPage) === 0 ? pageCount = postCount / perPage : pageCount = Math.ceil(postCount / perPage)
+    
+    dispatch(pageCountUpdate(pageCount))
+
+    // if (currentPage > pageCount) {
+    //     dispatch(switchPage(pageCount))
+    // } 
+    // else if (currentPage === 0) {
+    //     dispatch(switchPage(1))
+    // }
+    
     const pagesArray = []
-    for (let i = 1; i <= pagesCount; i++) {
+    for (let i = 1; i <= pageCount; i++) {
         pagesArray.push(i);
     } 
-
-    const switchPageHandler = (page : number) => {
-        dispatch(switchPage({page: page}))
-    }
+    console.log(pageCount)
     console.log('Pagination Controls')
-    console.log(posts)
-    console.log(pagesCount)
+    // console.log(posts)
     
     return (
         <div className='pagination-controls_wrapper'>
             <ButtonGroup>
                 {pagesArray.map( page =>(
-                    <PaginationButton page={page}/>
+                    <PaginationButton key={page} current={page === currentPage} page={page}/>
                 ))}
             </ButtonGroup>
         </div>

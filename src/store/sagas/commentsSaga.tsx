@@ -13,8 +13,8 @@ function fetchCommentsClosure(id: number) {
 }
 
 
-function* workGetPostCommentsFetch(action: PayloadAction<{ id: number}>): any {
-    const comments = yield call(fetchCommentsClosure(action.payload.id))
+function* workGetPostCommentsFetch(action: PayloadAction<number>): any {
+    const comments = yield call(fetchCommentsClosure(action.payload))
     yield put(getPostCommentsSuccess(comments.data))
 }
 

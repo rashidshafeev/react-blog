@@ -13,7 +13,7 @@ function CommentsAccordionButton({ children, eventKey, callback, postId } :any) 
       () => {
         // callback && callback(eventKey)
         if (!isCurrentEventKey) {
-          dispatch(getPostCommentsFetch({id: postId}))
+          dispatch(getPostCommentsFetch(postId))
         }
       }
     );

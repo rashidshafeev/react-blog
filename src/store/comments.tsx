@@ -27,7 +27,7 @@ export const commentsSlice = createSlice({
   name: 'comments',
   initialState,
   reducers: {
-    getPostCommentsFetch: (state, action: PayloadAction<{id: number}>) => {
+    getPostCommentsFetch: (state, action: PayloadAction<number>) => {
       state.isLoading = true
     },
     getPostCommentsSuccess: (state, action: PayloadAction<BlogComment[]>) => {

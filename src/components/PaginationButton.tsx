@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
-import { FiMenu } from 'react-icons/fi'
-import { Navbar, Container, Offcanvas, Button, Nav, ButtonGroup } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/index';
+import React from 'react'; 
+import { Button } from 'react-bootstrap'; 
+import { useDispatch } from 'react-redux'; 
 import { switchPage } from '../store/posts';
 
 type PaginationButtonProps = {
+    current: boolean,
     page: number
 }
 
-function PaginationButton({page} : PaginationButtonProps) {
+function PaginationButton({current, page} : PaginationButtonProps) {
     const dispatch = useDispatch()
 
     const switchPageHandler = () => {
-        dispatch(switchPage({page: page}))
+        dispatch(switchPage(page))
     }
 
     console.log('Pagination Button')
-    
-    return (
-            <Button onClick={switchPageHandler}>{page}</Button>
-    )
+    console.log(current, page)
+
+    if (current) {
+        return (
+            <Button variant="info" onClick={switchPageHandler}>{page} </Button>
+        )
+    } else {
+        return (
+            <Button onClick={switchPageHandler}>{page} </Button>
+        )
+    }
 }
 
 export default React.memo(PaginationButton)

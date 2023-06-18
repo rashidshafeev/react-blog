@@ -8,6 +8,7 @@ import CommentsAccordionButton from '../components/CommentsAccordionButton';
 import PostsList from '../components/PostsList';
 import FilterInput from '../components/FilterInput';
 import PaginationControls from '../components/PaginationControls';
+import ControlsBar from '../components/ControlsBar';
 
 
   
@@ -19,7 +20,7 @@ function FeedPage() {
 
     return (
         <Container>
-            <FilterInput></FilterInput>
+            <ControlsBar/>
             <PostsList></PostsList>
             <PaginationControls></PaginationControls>              
         </Container>

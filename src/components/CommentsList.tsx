@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/index';
-import PostCard from './PostCard';
-import { editPost, getPostsFetch, BlogPost } from '../store/posts';
-import { getPostCommentsFetch, BlogComment } from '../store/comments';
+import React from 'react'; 
+import { BlogComment } from '../store/comments';
 
 type CommentsListProps = {
     comments: BlogComment[]
@@ -17,7 +13,7 @@ function CommentsList({comments} : CommentsListProps) {
     return (
         <div className='comments-list_wrapper'>
             {comments.map((comment: BlogComment) =>
-                <div>{comment.body}</div>
+                <div key={comment.id}>{comment.body}</div>
             )}
         </div>
 
