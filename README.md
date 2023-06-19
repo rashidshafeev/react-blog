@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+#REACT BLOG
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Использованные технологии:
 
-## Available Scripts
+- React
+- React-Bootstrap
+- React-Router
+- Axios
+- Redux
+- Redux-saga
 
-In the project directory, you can run:
+Базовые функции блог платформы на ReactJS. Сделана на основе create-react-app. Dev сервер запускается командой `npm run start`.
 
-### `npm start`
+Стремился разбивать приложение на независимые переиспользуемые компоненты.
+Интерфейс построен в основном на React-Bootstrap. Верстка адаптирована для устройств с маленькими экранами.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Данные полчуены с фейкового API. Работа с сервером рализована через Redux Saga. Реализована обработка ошибок на случай прихода ошибки от сервера, с отображением сообщения об ошибке пользователю. При загрузке данных с сервера отображается анимированный лоадер(создана искусственная задеркжа в 0.5 секунды).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Присутствует хэдер с «меню-бургером». При нажатии на него слева всплывает сайдбар, где будет присутствует навигационное меню, а также отображаются аватар, имя и почтовый адрес. Хэдер находится в Root роуте, и виден на всех страницах.
+ 
+##Роуты:
+1. Список постов(главная страница)
+2. Страница пользователя
 
-### `npm test`
+###Список постов:
+- Содержит список всех постов
+- Каждый пост состоит из заголовка, текста, аватара и списка комментариев
+- При клике на аватар просиходит переход на страницу пользователя. Аватар одинаковый для всех пользователей
+- Список комментариев изначально скрыт, доступна кнопка "Комментарии". При нажатии на кнопку грузится список комментариев к данному посту. При повторном нажатии список скрывается. Комментарий состоит из заголовка(email) и текста
+- Присутствует возможность поиска/фильтра по заголовку поста(+ кнопка очистки поля фильтра)
+- Присутствует возможность сортировки по заголовку
+- Присутствует пагинация, с возможностью выбрать количество постов на странице
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+###Страница пользователя:
+- Выводятся данные о пользовател
+- Список постов этого пользователя
+- Кнопка назад для перехода на главную страницу 
+- Загружается по ссылке типа "/user/5", данные подгружаются даже после обновления страницы

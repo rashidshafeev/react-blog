@@ -6,7 +6,7 @@ import { getPostCommentsFail, getPostCommentsSuccess } from "../comments";
 
 function* workGetPostCommentsFetch(action: PayloadAction<number>): any {
     try {
-        const comments = yield axios.get(`https://jsonpla11ceholder.typicode.com/posts/${action.payload}/comments`)
+        const comments = yield axios.get(`https://jsonplaceholder.typicode.com/posts/${action.payload}/comments`)
     yield delay(500)
     yield put(getPostCommentsSuccess(comments.data))
     } catch (error) {

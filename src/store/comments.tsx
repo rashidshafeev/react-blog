@@ -37,7 +37,6 @@ export const commentsSlice = createSlice({
           error: false
         }
       }
-
       state.comments[String(action.payload)].isLoading = true
     },
     getPostCommentsSuccess: (state, action: PayloadAction<BlogComment[]>) => {
@@ -54,7 +53,7 @@ export const commentsSlice = createSlice({
         }
       }
       state.comments[String(action.payload)].isLoading = false
-      state.comments[String(action.payload)].error = false
+      state.comments[String(action.payload)].error = true
     },
     editComment: (state, action: PayloadAction<{id: number, body: string}>) => {
         // if (state.comments.find((comment: BlogComment)  => comment.id === action.payload.id)) {
@@ -66,8 +65,5 @@ export const commentsSlice = createSlice({
 })
 
 export const { editComment, getPostCommentsFetch, getPostCommentsSuccess, getPostCommentsFail } = commentsSlice.actions
-
-// Other code such as selectors can use the imported `RootState` type
-// export const selectCount = (state: RootState) => state.counter.value
 
 export default commentsSlice.reducer
