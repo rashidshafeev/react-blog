@@ -1,15 +1,22 @@
 import FilterInput from './FilterInput';
 import SortingDropdown from './SortingDropdown';
 import PostsPerPageButtons from './PostsPerPageButtons';
+import { Col, Row } from 'react-bootstrap';
 
 function ControlsBar() {
 
     return (
-        <div className='controls-bar_wrapper'>
-            <FilterInput/>
-            <SortingDropdown/>
-            <PostsPerPageButtons/>
-        </div>
+        <Row>
+            <Col xs={3}>
+                <FilterInput />
+            </Col>
+            <Col>
+                <SortingDropdown />
+            </Col>
+            <Col>
+                <PostsPerPageButtons />
+            </Col>
+        </Row>
     )
 }
 

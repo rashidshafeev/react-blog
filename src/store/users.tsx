@@ -25,18 +25,20 @@ export interface BlogUser {
     }
   }
 
-interface BlogUsers {
+export interface BlogUsers {
     [userId: string]: BlogUser,
 }
 
 interface usersState {
     users: BlogUsers,
-    isLoading: boolean
+    isLoading: boolean,
+    error: boolean,
 }
 
 const initialState: usersState = {
     users: {},
-    isLoading: false
+    isLoading: false,
+    error: false,
 } 
 
 export const usersSlice = createSlice({
@@ -53,6 +55,7 @@ export const usersSlice = createSlice({
     },
     getUserFail: (state) => {
       state.isLoading = false
+      state.error = true
     },
     editUserUsername: (state, action: PayloadAction<{id: number, username: string}>) => {
           // if (state.users.find( (user: BlogUser)  => user.id === action.payload.id)) {

@@ -11,6 +11,7 @@ export interface BlogPost {
 export interface postsState {
   posts: BlogPost[],
   isLoading: boolean,
+  error: boolean,
   postCount: number,
   pageCount: number,
   currentPage: number,
@@ -22,6 +23,7 @@ export interface postsState {
 const initialState: postsState = {
   posts: [],
   isLoading: false,
+  error: false,
   postCount: 0,
   pageCount: 0,
   currentPage: 1,
@@ -34,7 +36,10 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    getPostsFetch: (state) => {
+    getAllPostsFetch: (state) => {
+      state.isLoading = true
+    },
+    getUserPostsFetch: (state, action: PayloadAction<number>) => {
       state.isLoading = true
     },
     getPostsSuccess: (state, action: PayloadAction<BlogPost[]>) => {
@@ -43,6 +48,7 @@ export const postsSlice = createSlice({
     },
     getPostsFail: (state) => {
       state.isLoading = false
+      state.error = true
     },
     postCountUpdate: (state, action: PayloadAction<number>) => {
       state.postCount = action.payload
@@ -71,6 +77,6 @@ export const postsSlice = createSlice({
   },
 })
 
-export const { editPost, getPostsFetch, getPostsSuccess, getPostsFail, pageCountUpdate, postCountUpdate, switchPage, filterChange, sortingChange, perPageChange } = postsSlice.actions
+export const { editPost, getAllPostsFetch, getUserPostsFetch, getPostsSuccess, getPostsFail, pageCountUpdate, postCountUpdate, switchPage, filterChange, sortingChange, perPageChange } = postsSlice.actions
 
 export default postsSlice.reducer

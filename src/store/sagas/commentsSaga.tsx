@@ -1,21 +1,19 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { call, put, takeEvery } from "redux-saga/effects";
-import { getPostCommentsSuccess } from "../comments";
-
-function fetchCommentsClosure(id: number) {
-    return function fetchComments() {
-        return axios ({
-            method: 'get',
-            url: `https://jsonplaceholder.typicode.com/posts/${id}/comments`
-        });
-    }
-}
+import { delay, put, takeEvery } from "redux-saga/effects";
+import { getPostCommentsFail, getPostCommentsSuccess } from "../comments";
 
 
 function* workGetPostCommentsFetch(action: PayloadAction<number>): any {
-    const comments = yield call(fetchCommentsClosure(action.payload))
+    try {
+        const comments = yield axios.get(`https://jsonpla11ceholder.typicode.com/posts/${action.payload}/comments`)
+    yield delay(500)
     yield put(getPostCommentsSuccess(comments.data))
+    } catch (error) {
+        console.log(error)
+        yield put(getPostCommentsFail(action.payload))
+    }
+    
 }
 
 function* commentsSaga() {

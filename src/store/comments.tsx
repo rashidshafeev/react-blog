@@ -10,17 +10,19 @@ export interface BlogComment {
   }
 
 interface BlogComments {
-    [postId: string]: BlogComment[],
+    [postId: string]: {
+      comments: BlogComment[],
+      isLoading: boolean,
+      error: boolean
+    },
  }
 
 interface commentsState {
-    comments: BlogComments,
-    isLoading: boolean
+    comments: BlogComments
 }
 
 const initialState: commentsState = {
-    comments: {},
-    isLoading: false
+    comments: {}
 }
 
 export const commentsSlice = createSlice({
@@ -28,15 +30,31 @@ export const commentsSlice = createSlice({
   initialState,
   reducers: {
     getPostCommentsFetch: (state, action: PayloadAction<number>) => {
-      state.isLoading = true
+      if (!state.comments[String(action.payload)]) {
+        state.comments[String(action.payload)] = {
+          comments: [],
+          isLoading: true,
+          error: false
+        }
+      }
+
+      state.comments[String(action.payload)].isLoading = true
     },
     getPostCommentsSuccess: (state, action: PayloadAction<BlogComment[]>) => {
       const postId = action.payload[0].postId
-      state.comments[postId] = action.payload
-      state.isLoading = false
+      state.comments[postId].comments = action.payload
+      state.comments[postId].isLoading = false
     },
-    getPostCommentsFail: (state) => {
-      state.isLoading = false
+    getPostCommentsFail: (state, action: PayloadAction<number>) => {
+      if (!state.comments[String(action.payload)]) {
+        state.comments[String(action.payload)] = {
+          comments: [],
+          isLoading: false,
+          error: true
+        }
+      }
+      state.comments[String(action.payload)].isLoading = false
+      state.comments[String(action.payload)].error = false
     },
     editComment: (state, action: PayloadAction<{id: number, body: string}>) => {
         // if (state.comments.find((comment: BlogComment)  => comment.id === action.payload.id)) {
