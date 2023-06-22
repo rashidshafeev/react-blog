@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/index'
 
 import FeedPage from './pages/Feed';
-import AboutPage from './pages/About';
+// import AboutPage from './pages/About';
 import RootLayout from './pages/Root';
 import ErrorPage from './pages/Error';
 import UserPage from './pages/User';

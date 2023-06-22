@@ -1,4 +1,4 @@
-import { Container, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import styles from './LoadingScreen.module.css'
 
 function LoadingScreen()   {    
