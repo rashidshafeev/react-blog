@@ -1,3 +1,4 @@
+import { Container, Spinner } from 'react-bootstrap'
 import styles from './LoadingScreen.module.css'
 
 function LoadingScreen()   {    
@@ -6,7 +7,9 @@ function LoadingScreen()   {
 
     return (
         <div className={styles.loadingWrapper}>
-            <div className={styles.spinner}></div>
+            <Spinner animation="border" role="status">
+
+</Spinner>
         </div>
     )
 }

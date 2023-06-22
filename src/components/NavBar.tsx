@@ -27,9 +27,19 @@ function NavBar() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Nav defaultActiveKey="/home" className="flex-column">
-                        <NavLink to="/" onClick={(e) => {handleClose()}}>Лента</NavLink>
-                        <NavLink to="/user" onClick={(e) => {handleClose()}}>Пользователь</NavLink>
-                        <NavLink to="/about" onClick={(e) => {handleClose()}}>О себе</NavLink>
+                        <NavLink
+                            to="/"
+                            onClick={(e) => { handleClose() }}
+                            className={({isActive}): string|undefined => isActive ? 'active-link' : undefined}>
+                            Лента
+                        </NavLink>
+                        <NavLink
+                            to="/user"
+                            onClick={(e) => { handleClose() }}
+                            className={({isActive}): string|undefined => isActive ? 'active-link' : undefined}>
+                            Пользователь
+                        </NavLink>
+                        {/* <NavLink to="/about" onClick={(e) => {handleClose()}}>О себе</NavLink> */}
                     </Nav>
                 </Offcanvas.Body>
             </Offcanvas>

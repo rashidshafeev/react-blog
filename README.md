@@ -1,13 +1,22 @@
 # REACT BLOG
 
+*** TODOS: ***
+- *Баг с пагинацией и сбросом фильтра*
+- *Верстка, внешний вид*
+- *Добавление и редактирование постов*
+- *Добавление и редактирование комментариев*
+- *Авторизация*
+- *Смена темы*
+
 ## Использованные технологии:
 
-- React
-- React-Bootstrap
-- React-Router
-- Axios
-- Redux
-- Redux-saga
+- **TypeScript**
+- **React**
+- **React-Bootstrap**
+- **React-Router**
+- **Axios**
+- **Redux**
+- **Redux-saga**
 
 Базовые функции блог платформы на ReactJS. Сделана на основе create-react-app. Dev сервер запускается командой `npm run start`.
 
